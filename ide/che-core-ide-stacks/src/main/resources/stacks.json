@@ -306,6 +306,88 @@
     }
   },
   {
+    "id": "Mriera-java",
+    "creator": "ide",
+    "name": "Java1",
+    "description": "Mriera Java Stack with JDK 8, Maven and Tomcat.",
+    "scope": "general",
+    "tags": [
+      "Java",
+      "JDK",
+      "Maven",
+      "Tomcat",
+      "Subversion",
+      "Ubuntu",
+      "Git"
+    ],
+    "components": [
+      {
+        "name": "JDK",
+        "version": "1.8.0_45"
+      },
+      {
+        "name": "Maven",
+        "version": "3.2.2"
+      },
+      {
+        "name": "Tomcat",
+        "version": "8.0.24"
+      }
+    ],
+    "workspaceConfig": {
+      "environments": {
+        "default": {
+          "machines": {
+            "dev-machine": {
+              "installers": [
+                "org.eclipse.che.exec", "org.eclipse.che.terminal", "org.eclipse.che.ws-agent"
+              ],
+              "servers": {
+                "tomcat8" : {
+                  "port" : "8080",
+                  "protocol" : "http"
+                },
+                "tomcat8-debug" : {
+                  "port" : "8000",
+                  "protocol" : "http"
+                },
+                "codeserver" : {
+                  "port" : "9876",
+                  "protocol" : "http"
+                }
+              },
+              "attributes" : {
+                "memoryLimitBytes": "2147483648"
+              }
+            }
+          },
+          "recipe": {
+            "content": "eclipse/ubuntu_jdk8",
+            "type": "dockerimage"
+          }
+        }
+      },
+      "name": "default",
+      "defaultEnv": "default",
+      "description": null,
+      "commands": [
+        {
+          "commandLine": "mvn clean install -f ${current.project.path}",
+          "name": "build",
+          "type": "mvn",
+          "attributes": {
+            "previewUrl": "",
+            "goal": "Build"
+          }
+        }
+      ]
+    },
+    "stackIcon": {
+      "name": "type-java.svg",
+      "mediaType": "image/svg+xml"
+    }
+  },
+  {
     "id": "java-default",
     "creator": "ide",
     "name": "Java",
